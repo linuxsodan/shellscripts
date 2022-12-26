@@ -4,10 +4,15 @@ readonly SCRIPT_NAME="Linux雑談質問部屋 診断用スクリプト v20220716
 # FIX: --output=fileを削除
 readonly DF_COMMAND="df -h --output=source,fstype,itotal,iused,iavail,ipcent,size,used,avail,pcent,target"
 
-source /etc/lsb-release
+if ! which lsb_release > /dev/null 2>&1; then
+    echo "サポートされていない環境です。(lsb_release not found)"
+    exit 1
+fi
 
-if [[ "$DISTRIB_ID" != "Ubuntu" ]]; then
-  echo "このスクリプトはUbuntu以外サポートしていません．"
+DISTRIB_ID=$(lsb_release -i | awk '{print $3}')
+
+if [ "$DISTRIB_ID" != "Ubuntu" ] && [ "$DISTRIB_ID" != "Debian" ]; then
+  echo "このスクリプトはUbuntuとDebian以外サポートしていません．"
   echo "DISTRIB_ID = $DISTRIB_ID"
   exit 1
 fi
