@@ -1,15 +1,23 @@
 #!/bin/bash
+if [[ "$(whoami)" == "root" ]];then
+  echo "Error: need to root privileges."
+  echo "Hint: run 'sudo $0'"
+  exit 1
+fi
+
+# デフォルトで入っているDockerを削除
+apt-get remove -y docker docker-engine docker.io containerd runc
+apt-get update -y
+apt-get install -y ca-certificates curl gnupg lsb-release
+
 # Dockerリポジトリ登録
-sudo apt remove docker docker-engine docker.io containerd runc
-sudo apt update -y
-sudo apt install -y ca-certificates curl gnupg lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+mkdir -p /etc/apt-get/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt-get/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt-get/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Dockerインストール
-sudo apt update -y
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+apt-get update -y
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 # Dockerユーザ設定
-sudo usermod -aG docker vagrant
+usermod -aG docker vagrant
