@@ -1,11 +1,11 @@
-# ƒ^[ƒ~ƒiƒ‹‚ÌƒfƒWƒ^ƒ‹ŽžŒv
+# ã‚¿ãƒ¼ãƒŸãƒŠãƒ«ã®ãƒ‡ã‚¸ã‚¿ãƒ«æ™‚è¨ˆ
 
 
-### “®ìŠm”F
+### å‹•ä½œç¢ºèª
 
 - Ubuntu 22.04
 - Ubuntu 18.04
-- Windows10 Powershell ŽŽ‚µ‚½‚ç•ÊƒEƒBƒ“ƒhƒE‚ÅŽÀs‚³‚ê‚½
+- Windows10 Powershell è©¦ã—ãŸã‚‰åˆ¥ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å®Ÿè¡Œã•ã‚ŒãŸ
 - OpenSUSE Leap 15.5
 - centOS 8.4
  
